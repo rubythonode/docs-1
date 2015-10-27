@@ -238,7 +238,7 @@ sub get_url {
     push @cmd, ( '--user', $cred ) if $cred;
 
     my $res;
-    eval { $res = run( @cmd, $url ); } && return $res;
+    eval { $res = run( @cmd, $url ); die $res if $res=~/^Moved/; 1 } && return $res;
 
     die "URL ($url) failed with $@\n";
 }

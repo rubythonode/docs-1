@@ -12,6 +12,7 @@ our $JSON = JSON::XS->new->utf8->pretty;
 
 our $Site_Index   = 'site';
 our $Docs_Index   = 'docs';
+our $Tags_Index   = 'tags';
 our $Base_URL     = 'https://www.elastic.co/';
 our $Sitemap_Path = '/sitemap.xml';
 our $Guide_Prefix = '/guide';
@@ -25,7 +26,7 @@ sub create_index {
 #===================================
     my $name       = shift;
     my $index_name = $name . '_' . time();
-    my $json       = file("web/$name.json")->slurp;
+    my $json       = file("web/config_$name.json")->slurp;
     my $defn       = $JSON->decode($json);
     $es->indices->create(
         index => $index_name,
@@ -39,7 +40,7 @@ sub create_index {
 sub switch_alias {
 #===================================
     my ( $alias, $index ) = @_;
-    my $aliases = $es->indices->get_alias( index => $alias );
+    my $aliases = $es->indices->get_alias( index => $alias, ignore => 404 );
     my @actions = { add => { index => $index, alias => $alias } };
     my @old = keys %$aliases;
 

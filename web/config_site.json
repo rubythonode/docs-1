@@ -1,6 +1,7 @@
 {
   "settings": {
     "number_of_shards": 1,
+    "similarity.default.type": "BM25",
     "analysis": {
       "analyzer": {
         "autocomplete": {
@@ -19,6 +20,9 @@
             "asciifolding",
             "shingles"
           ]
+        },
+        "tags": {
+          "tokenizer": "path_hierarchy"
         }
       },
       "filter": {
@@ -42,47 +46,48 @@
   "mappings": {
     "doc": {
       "properties": {
+        "is_current": {
+          "type": "boolean"
+        },
         "title": {
           "type": "string",
-          "similarity": "BM25",
           "analyzer": "standard",
           "fields": {
             "autocomplete": {
               "type": "string",
-              "similarity": "BM25",
-              "search_analyzer": "standard",
-              "index_analyzer": "autocomplete"
+              "analyzer": "autocomplete",
+              "search_analyzer": "standard"
             },
             "shingles": {
               "type": "string",
-              "similarity": "BM25",
               "analyzer": "shingles"
             },
             "stemmed": {
               "type": "string",
-              "similarity": "BM25",
               "analyzer": "english"
+            },
+            "raw": {
+              "type": "string",
+              "index": "not_analyzed"
             }
           }
         },
         "content": {
           "type": "string",
           "analyzer": "standard",
+          "index_options": "offsets",
           "fields": {
             "autocomplete": {
               "type": "string",
-              "similarity": "BM25",
               "search_analyzer": "standard",
-              "index_analyzer": "autocomplete"
+              "analyzer": "autocomplete"
             },
             "shingles": {
               "type": "string",
-              "similarity": "BM25",
               "analyzer": "shingles"
             },
             "stemmed": {
               "type": "string",
-              "similarity": "BM25",
               "analyzer": "english",
               "index_options": "offsets"
             }
@@ -92,9 +97,21 @@
           "type": "date",
           "format": "dateOptionalTime"
         },
-        "tags": {
+        "section": {
           "type": "string",
           "index": "not_analyzed"
+        },
+        "tags": {
+          "type": "string",
+          "analyzer": "tags",
+          "search_analyzer": "keyword",
+          "fields": {
+            "autocomplete": {
+              "type": "string",
+              "analyzer": "autocomplete",
+              "search_analyzer": "standard"
+            }
+          }
         }
       }
     }

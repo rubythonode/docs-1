@@ -1,0 +1,25 @@
+{
+  "settings": {
+    "number_of_shards": 1
+  },
+  "mappings": {
+    "tag": {
+      "properties": {
+        "suggest": {
+          "type": "completion",
+          "analyzer": "standard",
+          "context": {
+            "section": {
+              "type": "category",
+              "path": "section"
+            }
+          }
+        },
+        "section": {
+          "type": "string",
+          "index": "not_analyzed"
+        }
+      }
+    }
+  }
+}

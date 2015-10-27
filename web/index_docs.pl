@@ -36,6 +36,7 @@ if ( !$Opts->{force} and sha_for("HEAD") eq sha_for('_index') ) {
 say "Indexing docs";
 main();
 run qw(git branch -f _index HEAD);
+exec('web/update_tags.pl');
 
 #===================================
 sub main {
@@ -81,6 +82,8 @@ sub index_docs {
 #===================================
     my ( $bulk, $dir, $prefix, $tags, $single ) = @_;
 
+    $tags =~ s/[- _]+/-/g;
+
     my $length_dir = length($dir);
     my $book_dir   = $dir->subdir($prefix);
     my @versions   = grep { $_->is_dir } $book_dir->children();
@@ -96,37 +99,38 @@ sub index_docs {
             @files = 'index.html';
         }
 
+        my $version = $version_dir->basename;
+        my $is_current = $version eq 'current' ? \1 : \0;
+
+        my $section = @versions > 2    # current and master
+            ? 'Docs/' . $tags . '/' . $version
+            : 'Docs/' . $tags;
+
+        my ( $product, $book_title ) = split '/', $tags;
+
         for (@files) {
             my $file = $version_dir->file($_);
             my $url = $Guide_Prefix . substr( $file, $length_dir );
-            my ( $product, $book_title ) = split '/', $tags;
-
-            if (@versions) {
-                my $version = $version_dir->basename;
-                $book_title .= " [$version]" if $version ne 'current';
-            }
 
             for my $page ( _load_file( $file, $single ) ) {
-                my $title
-                    = $page->{title}
-                    ? $page->{title} . " | $book_title | $product"
-                    : "$book_title | $product";
+
+                # single-page books don't have their titles detected
+                my $title = $page->{title} || $book_title;
 
                 $bulk->index(
                     {   _id     => $url . $page->{id},
                         _source => {
-                            book       => $prefix,
-                            version    => $version_dir->basename,
-                            title      => $title,
-                            content    => $page->{text},
-                            url        => $url . $page->{id},
-                            tags       => $tags,
-                            is_section => $page->{main} ? \0 : \1
+                            title          => $title,
+                            content        => $page->{text},
+                            url            => $url . $page->{id},
+                            tags           => [ $product, $section ],
+                            section        => $section,
+                            is_current     => $is_current,
+                            is_sub_section => $page->{main} ? \0 : \1
                         }
                     }
                 );
             }
-
         }
     }
     return;

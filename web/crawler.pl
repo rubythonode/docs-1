@@ -2,6 +2,7 @@
 
 use strict;
 use warnings;
+use HTML::Entities qw(decode_entities);
 
 our ( $Base_URL, $Sitemap_Path, $es, $Site_Index );
 
@@ -23,7 +24,8 @@ my $now          = timestamp();
 my $sitemap_urls = get_sitemap( $Base_URL, $Sitemap_Path );
 my $known_urls   = get_known_urls($Site_Index);
 
-index_changes( $Site_Index, $sitemap_urls, $known_urls );
+index_changes( $Site_Index, $sitemap_urls, $known_urls )
+    && exec('web/update_tags.pl');
 
 #===================================
 sub index_changes {
@@ -53,17 +55,34 @@ sub index_changes {
 
         my $doc = ES::SiteParser->new()->parse($html)->output;
         $doc->{published_at} = $new->{$url};
-        $doc->{title} =~ s/\s*\|\s*Elastic//;
+        $doc->{title} =~ s/\s*\|\s*Elastic\s*$//;
 
-        my ( undef, @tags ) = grep {$_} reverse split '/', $url;
-        for (@tags) {
-            s/[_-]/ /g;
-            $doc->{title} = $doc->{title} . " | " . ucfirst($_);
+        my @tags = @{ $doc->{tags} };
+        my $section = $doc->{section} || '';
+
+        if ( !$section && @tags == 0 ) {
+            my $path = $url;
+
+            # percent decoding
+            $path =~ s/%([0-9A-Fa-f]{2})/chr(hex($1))/eg;
+
+            # if first part of path begins with at least three letters
+            if ( $path =~ m{^/([a-z]{3,}[^/]*)/}i ) {
+                $section = $1;
+
+                # uppercase first chars of each word
+                $section =~ s{(_|\b)(\w)}{$1\u$2}g;
+            }
         }
+        push @tags, $section if $section;
+        $doc->{section}    = $section;
+        $doc->{tags}       = [ map { s/[-_ ]+/-/g; $_ } @tags ];
+        $doc->{is_current} = \1;
 
         $bulk->index( { id => $url, source => $doc } );
     }
     $bulk->flush;
+    return keys(%$new) + keys(%$old);
 }
 
 #===================================
@@ -88,7 +107,7 @@ sub get_sitemap {
 
         my $url = $vals{loc}
             or die "No <loc> found in: \n$entry\n";
-        $url = URI->new($url)->path;
+        $url = URI->new( decode_entities($url) )->path;
 
         my $lastmod = $vals{lastmod} || $now;
 
