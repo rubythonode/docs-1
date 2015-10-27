@@ -448,7 +448,7 @@ sub _as_json {
     my ( $code, $data ) = @_;
     return [
         $code,
-        [   'Content-Type'                => 'application/json',
+        [   'Content-Type'                => 'application/json; charset=utf-8',
             'Access-Control-Allow-Origin' => '*'
         ],
         [ $JSON->encode($data) ]
