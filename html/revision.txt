@@ -61,7 +61,7 @@ Repo: elasticsearch-hadoop
 
 Repo: elasticsearch-js
 --------------------------------------------------------------------------------
-  docs_master 63d511a  [apis] regenerate
+  docs_master         63d511a  [apis] regenerate
 
 Repo: elasticsearch-net
 --------------------------------------------------------------------------------
@@ -85,7 +85,7 @@ Repo: found
 
 Repo: guide
 --------------------------------------------------------------------------------
-  ._master 3f0fb14  Fixed Marvel installation link
+  ._master            3f0fb14  Fixed Marvel installation link
 
 Repo: kibana
 --------------------------------------------------------------------------------
