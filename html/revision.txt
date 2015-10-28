@@ -89,11 +89,11 @@ Repo: guide
 
 Repo: kibana
 --------------------------------------------------------------------------------
-  docs_3.0            80d995c  Merge pull request #5019 from palecur/origin/3.0
-  docs_4.0            cd0dc43  Fixed path to Shield 1.3.
-  docs_4.1            15ea3a2  If -> When change to track doc propagation in build system
-  docs_4.2            e0138a4  track own bindings
-  docs_master         f245071  Updated Shield docs version to 2.0
+  docs_3.0    80d995c  Merge pull request #5019 from palecur/origin/3.0
+  docs_4.0    cd0dc43  Fixed path to Shield 1.3.
+  docs_4.1    15ea3a2  If -> When change to track doc propagation in build system
+  docs_4.2    62bba47  Typo fix
+  docs_master f245071  Updated Shield docs version to 2.0
 
 Repo: libbeat
 --------------------------------------------------------------------------------
@@ -123,7 +123,7 @@ Repo: packetbeat
 
 Repo: sense
 --------------------------------------------------------------------------------
-  docs_master         8c03784  add a . remove staging
+  docs_master 09216ea  2.0.0-snap
 
 Repo: topbeat
 --------------------------------------------------------------------------------
