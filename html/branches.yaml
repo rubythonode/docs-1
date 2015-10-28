@@ -3,7 +3,7 @@ curator:
   _docs/asciidoc_3.x: 05afe54a7737285bf86335fd976b2bda6f1f5143
   _docs/asciidoc_master: 4468eae8a2b4f44263b1efa9886406158be2255e
 elasticsearch:
-  _docs/community-clients_master: ea750de39f2f1ae312515d0770cb6487787a72db
+  _docs/community-clients_master: 2ed02f9eb3a3f2fe82436f60e36a5b80d5cf09e8
   _docs/groovy-api_0.90: 9078bbfc6d36da644ddd75921066ff7fe2db196b
   _docs/groovy-api_1.3: 84e742145c1c57e966ad03307d09278808e58d29
   _docs/groovy-api_1.4: 163ac3f804d360eb734ef96e6c61b0749d844411

@@ -5,7 +5,7 @@ Repo: curator
 
 Repo: elasticsearch
 --------------------------------------------------------------------------------
-  docs/community-clients_master ea750de  Explain api: move query parsing to the coordinating node
+  docs/community-clients_master 2ed02f9  Merge pull request #14320 from jpountz/upgrade/lucene-5.4-snapshot-1710880
   docs/groovy-api_0.90          9078bbf  Merge pull request #14228 from ByronDDelpinal/patch-1
   docs/groovy-api_1.3           84e7421  Backs out early link fix.
   docs/groovy-api_1.4           163ac3f  Java API docs should point to 1.4 ES reference docs
