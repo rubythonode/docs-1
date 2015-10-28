@@ -1,7 +1,7 @@
 ---
 curator:
   _docs/asciidoc_3.x: 05afe54a7737285bf86335fd976b2bda6f1f5143
-  _docs/asciidoc_master: 4468eae8a2b4f44263b1efa9886406158be2255e
+  _docs/asciidoc_master: a4bce765c40a59f701f1768d6e44987dd4d52cc4
 elasticsearch:
   _docs/community-clients_master: 2ed02f9eb3a3f2fe82436f60e36a5b80d5cf09e8
   _docs/groovy-api_0.90: 9078bbfc6d36da644ddd75921066ff7fe2db196b
@@ -53,7 +53,7 @@ elasticsearch:
 elasticsearch-hadoop:
   _docs/src/reference/asciidoc_2.0: a939a9ab102f3cba1e3f23cbab091b5927466e2f
   _docs/src/reference/asciidoc_2.1: b2022cb7a2e6644ad5b5dc9ce93dcfc4fb917d0a
-  _docs/src/reference/asciidoc_master: d17df882f685f111e1b9c82e7c5211c9a75ebbf8
+  _docs/src/reference/asciidoc_master: f28b0d3e1252abf7bfdf37f261aa120d9ed4349b
 elasticsearch-js:
   _docs_master: 63d511ad2791e89459670a540752285f6b5349fe
 elasticsearch-net:
