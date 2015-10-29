@@ -1,7 +1,7 @@
 Repo: curator
 --------------------------------------------------------------------------------
-  docs/asciidoc_3.x    05afe54  Fixed doc version links
-  docs/asciidoc_master a4bce76  Merge pull request #503 from untergeek/3.4.0_docs
+  docs/asciidoc_3.x    05afe54 Fixed doc version links
+  docs/asciidoc_master a4bce76 Merge pull request #503 from untergeek/3.4.0_docs
 
 Repo: elasticsearch
 --------------------------------------------------------------------------------
