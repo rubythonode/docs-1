@@ -1,13 +1,13 @@
 ---
 beats:
   _filebeat/docs_1.0.0: ec3b55f1339b65f95069048fe87b670498c8015e
-  _filebeat/docs_master: caa250bd785819a8ddba67612e5bc89bd673de0f
+  _filebeat/docs_master: 1a2dafffb516648af4d1981097fd7cb5d5fb6015
   _libbeat/docs_1.0.0: ec3b55f1339b65f95069048fe87b670498c8015e
-  _libbeat/docs_master: caa250bd785819a8ddba67612e5bc89bd673de0f
+  _libbeat/docs_master: 1a2dafffb516648af4d1981097fd7cb5d5fb6015
   _packetbeat/docs_1.0.0: ec3b55f1339b65f95069048fe87b670498c8015e
-  _packetbeat/docs_master: caa250bd785819a8ddba67612e5bc89bd673de0f
+  _packetbeat/docs_master: 1a2dafffb516648af4d1981097fd7cb5d5fb6015
   _topbeat/docs_1.0.0: ec3b55f1339b65f95069048fe87b670498c8015e
-  _topbeat/docs_master: caa250bd785819a8ddba67612e5bc89bd673de0f
+  _topbeat/docs_master: 1a2dafffb516648af4d1981097fd7cb5d5fb6015
 curator:
   _docs/asciidoc_3.3: df6ebeead7e8d0a7f05c4b334970320c080c9e0f
   _docs/asciidoc_3.4: 2fc80b92a7194823e720081ef4778f6e0dc959e5
@@ -75,7 +75,8 @@ elasticsearch-php:
 found:
   _docs_1.0: b990c37563da374c8cc7bfcab8b87feff4d554b9
 guide:
-  _._master: b3fbc7c25aaba1b4d146a556412df6b1bdebcb70
+  _._1.x: 16ca370308039e0e3282b74d43d7f755c5c33e9f
+  _._master: f0b6e7198e141feb5ba5040a2a5d6d5f688b610d
 kibana:
   _docs_3.0: 80d995cd2249a6f019f614a071a91690500ce5c5
   _docs_4.0: cd0dc430e686a81eaaf5ca5cb78f99de301f027d
